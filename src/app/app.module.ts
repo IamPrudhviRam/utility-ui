@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 
 // import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { FieldExtractionComponent } from 'src/components/field-extraction/field-extraction.component';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FieldExtractionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,24 @@
+<div>
+  <p>field-extraction works!</p>
+  <h1 style="text-align: center">Upload a Image (Testing)</h1>
+  <input type="file" (change)="fileChangeEvent($event)" />
+  <h1 style="text-align: center">Original File</h1>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="false"
+    [resizeToWidth]="0"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    [cropper]="initialPosition"
+  ></image-cropper>
+  <h1 style="text-align: center">Cropped File</h1>
+  <img [src]="croppedImage" />
+  <h1 style="text-align: center">Coordinates</h1>
+  <div>{{ positions.x1 }}</div>
+  <div>{{ positions.x2 }}</div>
+  <div>{{ positions.y1 }}</div>
+  <div>{{ positions.y2 }}</div>
+</div>
