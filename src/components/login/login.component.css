@@ -1,0 +1,48 @@
+.loginImg {
+    width: 100%;
+    height: 99.9vh;
+    object-fit: fill;
+  }
+  .centerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .centerElement {
+    width: 80%;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+  }
+  .loginButton {
+    background-color: #e0001b;
+    color: white;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .separator {
+    border: 1px solid #a1a1a1;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .active {
+    font-weight: 600;
+    color: black;
+  }
+  .inActive {
+    color: #a1a1a1;
+    font-weight: 400;
+  }
+  .inActive:hover,
+  .active:hover {
+    cursor: pointer;
+  }
+  .sign-up {
+    float: right;
+    width: 15%;
+  }
+  
