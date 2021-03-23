@@ -4,20 +4,18 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 @Component({
   selector: 'field-extraction',
   templateUrl: './field-extraction.component.html',
-  styleUrls: ['./field-extraction.component.css']
+  styleUrls: ['./field-extraction.component.css'],
 })
 export class FieldExtractionComponent implements OnInit {
-
   title = 'Invoice-UI';
   imageChangedEvent: any = '';
   croppedImage: any = '';
   positions: any = '';
   initialPosition: any = { x1: 0, x2: 100, y1: 0, y2: 100 };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
@@ -37,6 +35,7 @@ export class FieldExtractionComponent implements OnInit {
   }
 
   cropperReady() {
+    this.initialPosition = { x1: 0, x2: 100, y1: 0, y2: 100 };
     console.log('Cropper Ready');
   }
 
@@ -44,5 +43,4 @@ export class FieldExtractionComponent implements OnInit {
     console.log('Image Load Failed');
     alert('Image failed to load. Please try again');
   }
-
 }
