@@ -9,11 +9,17 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { FieldExtractionComponent } from 'src/components/field-extraction/field-extraction.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { DashboardComponent } from 'src/components/dashboard/dashboard.component';
+import { TemplateLabelCreationComponent } from 'src/components/template-label-creation/template-label-creation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [AppComponent, FieldExtractionComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    FieldExtractionComponent,
+    LoginComponent,
+    DashboardComponent,
+    TemplateLabelCreationComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

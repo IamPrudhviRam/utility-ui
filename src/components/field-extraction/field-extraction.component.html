@@ -1,24 +1,129 @@
-<div>
-  <p>field-extraction works!</p>
-  <h1 style="text-align: center">Upload a Image (Testing)</h1>
-  <input type="file" (change)="fileChangeEvent($event)" />
-  <h1 style="text-align: center">Original File</h1>
-  <image-cropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="false"
-    [resizeToWidth]="0"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded()"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-    [cropper]="initialPosition"
-  ></image-cropper>
-  <h1 style="text-align: center">Cropped File</h1>
-  <img [src]="croppedImage" />
-  <h1 style="text-align: center">Coordinates</h1>
-  <div>{{ positions.x1 }}</div>
-  <div>{{ positions.x2 }}</div>
-  <div>{{ positions.y1 }}</div>
-  <div>{{ positions.y2 }}</div>
-</div>
+<h1 class="text-center mb-4">Mapping Template and Labels</h1>
+<form
+  [formGroup]="templateMappingForm"
+  (ngSubmit)="onTemplateMappingFormSubmit()"
+  *ngIf="templateMappingFormDisplay"
+>
+  <div class="text-center">
+    <label for="upload" class="font-weight-bold m-3">Upload a Document</label>
+    <input
+      type="file"
+      id="upload"
+      name="upload"
+      accept="application/pdf"
+      class="mb-3"
+      (change)="fileChangeEvent($event, inputFile)"
+      #inputFile
+    />
+    <div class="form-group col-6 mx-auto">
+      <label for="billTemplate">Bill Template</label>
+      <select
+        formControlName="billTemplate"
+        id="billTemplate"
+        class="form-control form-control-sm"
+        [ngClass]="{
+          'is-invalid':
+            templateMappingFormSubmitted &&
+            templateMappingFormValues.billTemplate.errors
+        }"
+      >
+        <option value="">Choose...</option>
+        <option value="ELECTRICBILL">Electric Bill</option>
+        <option value="WATERBILL">Water Bill</option>
+        <option value="GASBILL">Gas Bill</option>
+        <option value="OTHERS">Others</option>
+      </select>
+      <div
+        *ngIf="
+          templateMappingFormSubmitted &&
+          templateMappingFormValues.billTemplate.errors
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="templateMappingFormValues.billTemplate.errors.required">
+          Bill Template is required
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary mr-1">Submit</button>
+    <button
+      class="btn btn-secondary"
+      type="reset"
+      (click)="onTemplateMappingFormReset()"
+    >
+      Reset
+    </button>
+  </div>
+</form>
+<form
+  [formGroup]="labelMappingForm"
+  (ngSubmit)="onLabelMappingFormSubmit()"
+  *ngIf="labelMappingFormDisplay"
+>
+  <div class="form-group col-6 mx-auto">
+    <label for="labels">Label</label>
+    <select
+      formControlName="labels"
+      id="labels"
+      class="form-control form-control-sm"
+      [ngClass]="{
+        'is-invalid':
+          labelMappingFormSubmitted && labelMappingFormValues.labels.errors
+      }"
+    >
+      <option value="">Choose...</option>
+      <option value="customerName">Customer Name</option>
+      <option value="totalAmount">Total Amount</option>
+      <option value="billingPeriod">Billing Period</option>
+      <option value="billDate">Bill Date</option>
+    </select>
+    <div
+      *ngIf="labelMappingFormSubmitted && labelMappingFormValues.labels.errors"
+      class="invalid-feedback"
+    >
+      <div *ngIf="labelMappingFormValues.labels.errors.required">
+        Label is required
+      </div>
+    </div>
+  </div>
+  <div class="m-3">
+    <h1 class="text-center">Cropped Image</h1>
+    <img [src]="croppedImage" />
+  </div>
+
+  <div class="m-3">
+    <h1 class="text-center">Coordinates</h1>
+    <div class="row">
+      <div class="col-3">X1 : {{ positions.x1 }}</div>
+      <div class="col-3">X2 : {{ positions.x2 }}</div>
+
+      <div class="col-3">Y1 : {{ positions.y1 }}</div>
+      <div class="col-3">Y2 : {{ positions.y2 }}</div>
+    </div>
+  </div>
+
+  <div class="m-3">
+    <image-cropper
+      [imageURL]="img"
+      [maintainAspectRatio]="false"
+      [resizeToWidth]="0"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+      [cropper]="initialPosition"
+    ></image-cropper>
+  </div>
+
+  <div class="text-center">
+    <button class="btn btn-primary mr-1">Submit</button>
+    <button
+      class="btn btn-secondary"
+      type="reset"
+      (click)="onLabelMappingFormReset()"
+    >
+      Reset
+    </button>
+  </div>
+</form>

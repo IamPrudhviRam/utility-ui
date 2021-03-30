@@ -14,9 +14,9 @@ export class AppComponent {
 ) {}
 
   ngOnInit(){
-    this.router.navigate(["login"]); 
+    this.router.navigate(["dashboard"]); 
     // On refresh route to login page
-    this.router.navigate(['/login']);
+    this.router.navigate(['/dashboard']);
     // to handle back button 
     history.pushState(null, null, location.href);
     this.locationStrategy.onPopState(() => {
